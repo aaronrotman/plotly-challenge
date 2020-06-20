@@ -115,7 +115,7 @@ function updatePlotly() {
 
 function createDropdown() {
     // Read the json data
-    d3.json("../../data/samples.json").then((data) => {
+    d3.json("../data/samples.json").then((data) => {
         
         var names = data.names;
         // Dropdown menu
