@@ -11,23 +11,23 @@ function init() {
 d3.selectAll("#selDataset").on("Change", updatePlotly);
 
 // ------------------------------------------------------------------------
-// Retrieve the data from the json file
-function getData() {
-    // Read the json data
-    d3.json("../../data/samples.json").then((data) => {
+// // Retrieve the data from the json file
+// function getData() {
+//     // Read the json data
+//     d3.json("data/samples.json").then((data) => {
         
-        var names = data.names;
-        var metadata = data.metadata;
-        var samples = data.samples;
-        // console.log(`Names ${names}`);
-        // console.log(`Metadata ${metadata}`);
-        // console.log(`Samples ${samples}`);
-    });
-};
+//         var names = data.names;
+//         var metadata = data.metadata;
+//         var samples = data.samples;
+//         // console.log(`Names ${names}`);
+//         // console.log(`Metadata ${metadata}`);
+//         // console.log(`Samples ${samples}`);
+//     });
+// };
 // ------------------------------------------------------------------------
 // Function to update the plots
 function updatePlotly() {
-    d3.json("../../data/samples.json").then((data) => {
+    d3.json("data/samples.json").then((data) => {
         var metadata = data.metadata;
         var samples = data.samples;
     
@@ -115,7 +115,7 @@ function updatePlotly() {
 
 function createDropdown() {
     // Read the json data
-    d3.json("../../data/samples.json").then((data) => {
+    d3.json("data/samples.json").then((data) => {
         
         var names = data.names;
         // Dropdown menu
