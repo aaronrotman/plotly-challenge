@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------
 // Function to run on page load
 function init() {
-    getData();
+//     getData();
     createDropdown();
     updatePlotly();
     
