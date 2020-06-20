@@ -12,7 +12,7 @@ function optionChanged() {
 
 
 // Read the sample data from "samples.json"
-d3.json("../data/samples.json").then((data) => {
+d3.json("../../data/samples.json").then((data) => {
 
     // console.log(data);
 

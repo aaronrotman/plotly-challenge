@@ -3,7 +3,7 @@
 function init() {
     getData();
     createDropdown();
-
+    updatePlotly();
     
 };
 // ------------------------------------------------------------------------
@@ -14,7 +14,7 @@ d3.selectAll("#selDataset").on("Change", updatePlotly);
 // Retrieve the data from the json file
 function getData() {
     // Read the json data
-    d3.json("../data/samples.json").then((data) => {
+    d3.json("../../data/samples.json").then((data) => {
         
         var names = data.names;
         var metadata = data.metadata;
@@ -27,7 +27,7 @@ function getData() {
 // ------------------------------------------------------------------------
 // Function to update the plots
 function updatePlotly() {
-    d3.json("../data/samples.json").then((data) => {
+    d3.json("../../data/samples.json").then((data) => {
         var metadata = data.metadata;
         var samples = data.samples;
     
@@ -64,8 +64,6 @@ function updatePlotly() {
         // Clear the html in demoInfo
         demoInfo.html("");
         //Append the demographic data to the div
-
-        // NEED TO REPLACE metadata[0] WITH THE CURRENT SELECTION'S INDEX
         var sampleInfo = filteredMeta[0];
         console.log(sampleInfo);
         for (const [key, value] of Object.entries(sampleInfo)) {
@@ -73,6 +71,42 @@ function updatePlotly() {
             paragraph = demoInfo.append("p");
             paragraph.text(`${key}:${value}`)
         };
+
+        // Create a pie chart from the current selection
+        // Trace for pie chart
+        var tracePie = {
+            values: sampleValues,
+            labels: otuIds,
+            type: "pie",
+            hoverinfo: otuLabels
+            // labels: otuLabels
+        };
+        
+        var pieChartData = [tracePie];
+        var pieLayout = {
+            title: `Sample: ${filteredMeta[0].id}`,
+        };
+        // Render the plot to the div tag with id "pie"
+        Plotly.newPlot("pie", pieChartData, pieLayout);
+
+        // Create a bubble chart from the current selection
+        // Trace for bubble chart
+        var traceBubble = {
+            x: otuIds,
+            y: sampleValues,
+            mode: 'markers',
+            marker: {
+                size: sampleValues
+            }
+
+        };
+        
+        var bubbleChartData = [traceBubble];
+        var bubbleLayout = {
+            title: `Sample: ${filteredMeta[0].id}`,
+        };
+        // Render the plot to the div tag with id "pie"
+        Plotly.newPlot("bubble", bubbleChartData, bubbleLayout);
     });
 
 
@@ -81,7 +115,7 @@ function updatePlotly() {
 
 function createDropdown() {
     // Read the json data
-    d3.json("../data/samples.json").then((data) => {
+    d3.json("../../data/samples.json").then((data) => {
         
         var names = data.names;
         // Dropdown menu
