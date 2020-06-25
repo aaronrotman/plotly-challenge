@@ -1,43 +1,16 @@
 // ------------------------------------------------------------------------
 // Function to run on page load
 function init() {
-<<<<<<< HEAD
-    // getData();
-=======
-//     getData();
->>>>>>> 9b65773c33db85eee8a1674d40f3bf3647c1148a
     createDropdown();
     updatePlotly();
-    
 };
 // ------------------------------------------------------------------------
 // Call updatePlotly when a change takes place
 d3.selectAll("#selDataset").on("Change", updatePlotly);
 
-<<<<<<< HEAD
 // Function to update the plots
 function updatePlotly() {
     d3.json("data/samples.json").then((data) => {
-=======
-// ------------------------------------------------------------------------
-// Retrieve the data from the json file
-// function getData() {
-//     // Read the json data
-//     d3.json("../../data/samples.json").then((data) => {
-        
-//         var names = data.names;
-//         var metadata = data.metadata;
-//         var samples = data.samples;
-//         // console.log(`Names ${names}`);
-//         // console.log(`Metadata ${metadata}`);
-//         // console.log(`Samples ${samples}`);
-//     });
-// };
-// ------------------------------------------------------------------------
-// Function to update the plots
-function updatePlotly() {
-    d3.json("./data/samples.json").then((data) => {
->>>>>>> 9b65773c33db85eee8a1674d40f3bf3647c1148a
         var metadata = data.metadata;
         var samples = data.samples;
     
@@ -125,11 +98,7 @@ function updatePlotly() {
 
 function createDropdown() {
     // Read the json data
-<<<<<<< HEAD
     d3.json("data/samples.json").then((data) => {
-=======
-    d3.json("./data/samples.json").then((data) => {
->>>>>>> 9b65773c33db85eee8a1674d40f3bf3647c1148a
         
         var names = data.names;
         // Dropdown menu
