@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------
 // Function to run on page load
 function init() {
-    getData();
+    // getData();
     createDropdown();
     updatePlotly();
     
@@ -10,21 +10,6 @@ function init() {
 // Call updatePlotly when a change takes place
 d3.selectAll("#selDataset").on("Change", updatePlotly);
 
-// ------------------------------------------------------------------------
-// // Retrieve the data from the json file
-// function getData() {
-//     // Read the json data
-//     d3.json("data/samples.json").then((data) => {
-        
-//         var names = data.names;
-//         var metadata = data.metadata;
-//         var samples = data.samples;
-//         // console.log(`Names ${names}`);
-//         // console.log(`Metadata ${metadata}`);
-//         // console.log(`Samples ${samples}`);
-//     });
-// };
-// ------------------------------------------------------------------------
 // Function to update the plots
 function updatePlotly() {
     d3.json("data/samples.json").then((data) => {
@@ -77,14 +62,13 @@ function updatePlotly() {
         var tracePie = {
             values: sampleValues,
             labels: otuIds,
+            hovertext: otuLabels,
             type: "pie",
-            hoverinfo: otuLabels
-            // labels: otuLabels
         };
         
         var pieChartData = [tracePie];
         var pieLayout = {
-            title: `Sample: ${filteredMeta[0].id}`,
+            // title: `Sample: ${filteredMeta[0].id}`,
         };
         // Render the plot to the div tag with id "pie"
         Plotly.newPlot("pie", pieChartData, pieLayout);
@@ -94,16 +78,17 @@ function updatePlotly() {
         var traceBubble = {
             x: otuIds,
             y: sampleValues,
+            hovertext: otuLabels,
             mode: 'markers',
             marker: {
-                size: sampleValues
+                size: sampleValues,
+                color: otuIds
             }
-
         };
-        
+    
         var bubbleChartData = [traceBubble];
         var bubbleLayout = {
-            title: `Sample: ${filteredMeta[0].id}`,
+            // title: `Sample: ${filteredMeta[0].id}`,
         };
         // Render the plot to the div tag with id "pie"
         Plotly.newPlot("bubble", bubbleChartData, bubbleLayout);
